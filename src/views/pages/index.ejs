@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <a href="https://www.google.com" target="_blank"><img src='google.jpg' alt="NA"></a>
+
+            <h2>Puppies</h2>
+            
+            <ul>
+                <% puppies.forEach( function(puppy) { %>
+                    <li>
+                        <strong> <%= puppy.name %> </strong>
+                        <%= puppy.breed %>
+                        <%= puppy.age %>
+                    </li>
+                <% }); %>
+            </ul>
+
+        </div>
+    </main>
+</body>
+</html>
