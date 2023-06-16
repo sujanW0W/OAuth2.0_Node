@@ -1,8 +1,9 @@
 import 'dotenv/config'
 import express,{Application} from 'express'
-import path from 'path'
 
 import { router as usersRoute} from './routes/userRoute'
+
+import './services/passport-setup' // this import is only for side effect.
 
 class App{
     public app: Application
@@ -29,7 +30,7 @@ class App{
         this.app.use( express.static(__dirname + '/public'))
         this.app.set('view engine', 'ejs')
 
-        this.app.use('/users', usersRoute)
+        this.app.use('/auth', usersRoute)
     }
 }
 
