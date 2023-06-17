@@ -3,9 +3,13 @@ import {DataTypes} from 'sequelize'
 
 const User = sequelize.define('User', {
     id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
+    },
+    googleId: {
+        type: DataTypes.STRING,
     },
     name: {
         type: DataTypes.STRING,

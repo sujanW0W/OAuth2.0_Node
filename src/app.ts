@@ -2,8 +2,12 @@ import 'dotenv/config'
 import express,{Application} from 'express'
 
 import { router as usersRoute} from './routes/userRoute'
+import {router as profileRoute} from './routes/profileRoute'
 
 import './services/passport-setup' // this import is only for side effect.
+
+import cookieSession from 'cookie-session'
+import passport from 'passport'
 
 class App{
     public app: Application
@@ -30,7 +34,18 @@ class App{
         this.app.use( express.static(__dirname + '/public'))
         this.app.set('view engine', 'ejs')
 
+        
+        this.app.use(cookieSession({
+            maxAge: 24 * 60 * 60 * 1000,
+            keys:[String(process.env.COOKIE_SESSION_KEY)]
+        }))
+        
+        //initialize passport
+        this.app.use(passport.initialize())
+        this.app.use(passport.session())
+        
         this.app.use('/auth', usersRoute)
+        this.app.use('/profile', profileRoute)
     }
 }
 
