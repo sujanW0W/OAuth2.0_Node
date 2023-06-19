@@ -11,8 +11,8 @@ passport.serializeUser((user: {id?: number}, done) => {
 
 passport.deserializeUser( (id, done) => {
     User.findOne({where: {id}})
-            .then( (user) => {
-                done(null, user)
+            .then( (userObj) => {
+                done(null, JSON.parse(JSON.stringify(userObj)))
             })
 })
 
@@ -35,17 +35,17 @@ passport.use(new GoogleStrategy({
         .then( (currentUser) => {
             if(currentUser){
                 //User already exists
-                console.log("User already exists : ", JSON.parse(JSON.stringify(currentUser)))
+                // console.log("User already exists : ", JSON.parse(JSON.stringify(currentUser)))
 
-                done(null, currentUser)
+                done(null, JSON.parse(JSON.stringify(currentUser)))
             }
             else{
                 //user does not exist
                 User.create(userInfo)
                 .then( (newUser) => {
-                    console.log("New user created. ", JSON.parse(JSON.stringify(newUser)))
+                    // console.log("New user created. ", JSON.parse(JSON.stringify(newUser)))
 
-                    done(null, newUser)
+                    done(null, JSON.parse(JSON.stringify(newUser)))
                 })
             }
         }

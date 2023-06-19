@@ -6,7 +6,8 @@ import {router as profileRoute} from './routes/profileRoute'
 
 import './services/passport-setup' // this import is only for side effect.
 
-import cookieSession from 'cookie-session'
+// import cookieSession from 'cookie-session'
+import session from 'express-session'
 import passport from 'passport'
 
 class App{
@@ -35,15 +36,22 @@ class App{
         this.app.set('view engine', 'ejs')
 
         
-        this.app.use(cookieSession({
-            maxAge: 24 * 60 * 60 * 1000,
-            keys:[String(process.env.COOKIE_SESSION_KEY)]
+        this.app.use(session({
+            name:'cookie-session',
+            secret: process.env.COOKIE_SESSION_KEY as string,
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                maxAge: 24*60*60*1000,
+                secure: false
+            }
         }))
         
         //initialize passport
         this.app.use(passport.initialize())
         this.app.use(passport.session())
-        
+
+        //Routes
         this.app.use('/auth', usersRoute)
         this.app.use('/profile', profileRoute)
     }

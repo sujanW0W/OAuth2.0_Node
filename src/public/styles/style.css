@@ -1,10 +1,10 @@
-*{
+* {
     box-sizing: border-box;
 }
-header{
+header {
     width: 100vw;
 }
-nav{
+nav {
     background-color: gray;
     width: 100%;
     padding: 20px;
@@ -15,29 +15,66 @@ nav{
     justify-content: space-between;
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
 
-a:visited{
+a:visited {
     color: black;
     text-decoration: none;
 }
 
-img{
+img {
     max-width: 30vw;
 }
 
-.buttons{
+.buttons {
     display: flex;
     gap: 20px;
 
     padding-right: 50px;
 }
 
-button{
+button {
     padding: 5px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.profileMain {
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #profilePicture {
+        border-radius: 50%;
+        max-width: 100px;
+    }
+
+    .profileDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+
+        .profileDetails {
+            width: 400px;
+            padding: 30px;
+        }
+    }
+}
+
+.profileDetails p {
+    margin: 0px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.profileDetails p span {
+    display: inline-block;
+    font-weight: 600;
+    width: 100px;
 }
